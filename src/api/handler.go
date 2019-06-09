@@ -21,7 +21,7 @@ func (apiHandler *APIHandler) RegisterRoutes() {
 	fmt.Println("Registering api routes")
 
 	secretsHandler := secrets.CreateAPIHandler(apiHandler.databaseClient)
-
+	
 	secretRoutes := apiHandler.router.Group("/secret")
 	secretRoutes.GET("/", secretsHandler.Index)
 	secretRoutes.POST("/", secretsHandler.Store)
@@ -29,3 +29,6 @@ func (apiHandler *APIHandler) RegisterRoutes() {
 	secretRoutes.DELETE("/:hash", secretsHandler.Delete)
 }
 
+func Validate(context *gin.Context) {
+	
+}

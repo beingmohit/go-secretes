@@ -6,9 +6,9 @@ import (
 
 type Secret struct {
 	bongo.DocumentBase `bson:",inline"`
-	Hash string
-	SecretText string
-	CreatedAt string
-	ExpiresAt string
-	RemainingViews uint64
+	Hash string `json:"hash"`
+	SecretText string `json:"secretText"`
+	CreatedAt string `json:"createdAt"`
+	ExpiresAt string `json:"expiresAt"`
+	RemainingViews uint64 `json:"remainingViews"`
 }

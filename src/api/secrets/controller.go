@@ -18,16 +18,25 @@ func CreateAPIHandler(databaseClient *database.Client) APIHandler {
 }
 
 func (apiHandler *APIHandler) Index(context *gin.Context) {
-	fmt.Println("Index")
+	
+}	
 
-	secret := &models.Secret{
-		Hash: "77788",
-		SecretText: "77788",
-		CreatedAt: "77788",
-		ExpiresAt: "77788",
-		RemainingViews: 1000,
+func (apiHandler *APIHandler) Store(context *gin.Context) {
+	var request StoreRequest
+
+	if context.BindJSON(&request) != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"error": "Bind Error"})
+		return
 	}
 
+	secret := &models.Secret{
+		Hash: request.Hash,
+		SecretText: request.SecretText,
+		CreatedAt: request.CreatedAt,
+		ExpiresAt: request.ExpiresAt,
+		RemainingViews: request.RemainingViews,
+	}
+	
 	error := apiHandler.databaseClient.Save("secrets", secret)
 	
 	if error != nil {
@@ -35,12 +44,8 @@ func (apiHandler *APIHandler) Index(context *gin.Context) {
 		return
 	}
 	
-	context.JSON(http.StatusOK, gin.H{"status": true})
+	context.JSON(http.StatusOK, secret)
 	return
-}	
-
-func (apiHandler *APIHandler) Store(context *gin.Context) {
-	fmt.Println("Store")
 }
 
 func (apiHandler *APIHandler) Show(context *gin.Context) {
