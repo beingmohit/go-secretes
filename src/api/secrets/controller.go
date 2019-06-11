@@ -7,7 +7,7 @@ import (
 	"time"
 	"net/http"
 	"crypto/md5"
-    "encoding/base32"
+	"encoding/base32"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/mgo.v2/bson"
 	"github.com/beingmohit/go-secretes/src/api/secrets/requests"
@@ -40,7 +40,7 @@ func (controller *Controller) Store(context *gin.Context) {
 	}
 
 	hasher := md5.New()
-    hasher.Write([]byte(request.SecretText))
+	hasher.Write([]byte(request.SecretText))
 	hash := base32.StdEncoding.EncodeToString(hasher.Sum(nil))
 	hash = strings.TrimRight(hash, "=")
 	hash = strings.ToLower(hash)
