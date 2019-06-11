@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+        <title>Secrets</title>
+
+        <!-- Required Stylesheets -->
+        <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+        <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
+        <link type="text/css" rel="stylesheet" href="main.css"/>
+
+    </head>
+    <body>
+    <!-- Our application root element -->
+        <div id="app">
+            <b-container>
+                <b-jumbotron header="Secrets" lead="">
+                </b-jumbotron>
+
+                <b-alert v-model="success.show" variant="success" dismissible>
+                    {{success.message}}
+                </b-alert>
+
+                <b-alert v-model="error.show" variant="danger" dismissible>
+                    {{error.message}}
+                </b-alert>
+
+                <b-row align-h="center">
+                    <b-col cols="6">
+                        <b-form inline @submit="viewSecret">
+                            <label class="sr-only" for="inline-form-input-name">Hash</label>
+                            <b-input v-model="view.hash"  id="inline-form-input-name" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Hash" required></b-input>
+
+                            <b-button type="submit" variant="outline-primary" class="mx-2">View</b-button>
+                            <b-button variant="outline-success" class="mx-2" v-b-modal.create-modal>Create</b-button>
+                        </b-form>
+                    </b-col>
+                </b-row>
+            </b-container>
+
+            <b-modal id="create-modal" title="Create" hide-footer size="lg">
+                <b-form @submit="createSecret">
+                    <b-form-group id="input-group-1" label="Secret" label-for="secretText">
+                        <b-form-input id="secretText" v-model="form.secretText" type="text" required placeholder="Secret"></b-form-input>
+                    </b-form-group>
+
+                    <b-form-group id="input-group-1" label="Expire After Views" label-for="expireAfterViews">
+                        <b-form-input id="expireAfterViews" v-model="form.expireAfterViews" type="number" required placeholder="Expire After Views"></b-form-input>
+                    </b-form-group>
+        
+                    <b-form-group id="input-group-1" label="Expire After" label-for="expireAfter">
+                        <b-form-input id="expireAfter" v-model="form.expireAfter" type="number" required placeholder="Expire After"></b-form-input>
+                    </b-form-group>
+
+                    <b-button type="submit" variant="primary">Submit</b-button>
+                </b-form>
+            </b-modal>
+
+            <b-modal id="view-modal" title="View" size="lg">
+                <b-form>
+                    <b-form-group id="input-group-1" label="Hash" label-for="hash">
+                        <b-form-input id="hash" v-model="view.hash" type="text" required disabled></b-form-input>
+                    </b-form-group>
+    
+                    <b-form-group id="input-group-1" label="Secret" label-for="secretText">
+                        <b-form-input id="secretText" v-model="view.secretText" type="text" required disabled></b-form-input>
+                    </b-form-group>
+    
+                    <b-form-group id="input-group-1" label="Created At" label-for="createdAt">
+                        <b-form-input id="createdAt" v-model="view.createdAt" type="text" disabled required ></b-form-input>
+                    </b-form-group>
+            
+                    <b-form-group id="input-group-1" label="Expires At" label-for="expiresAt">
+                        <b-form-input id="expiresAt" v-model="view.expiresAt" type="text" disabled required></b-form-input>
+                    </b-form-group>
+
+                    <b-form-group id="input-group-1" label="Remaining Views" label-for="remainingViews">
+                        <b-form-input id="remainingViews" v-model="view.remainingViews" type="number" disabled required></b-form-input>
+                    </b-form-group>
+                </b-form>
+            </b-modal>
+        </div>
+
+        <!-- Required scripts -->
+        <script src="https://unpkg.com/vue"></script>
+        <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+        <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>

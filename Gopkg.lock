@@ -10,6 +10,14 @@
   version = "v0.1.0"
 
 [[projects]]
+  branch = "master"
+  digest = "1:0a08f9e465804026e507494af1a5b8131615e0d38b170e7649d666a30ad4d0a6"
+  name = "github.com/gin-contrib/static"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "c1cdf9c9ec7b10ddff982ab3814ae4dd778e36a4"
+
+[[projects]]
   digest = "1:d8bd2a337f6ff2188e08f72c614f2f3f0fd48e6a7b37a071b197e427d77d3a47"
   name = "github.com/gin-gonic/gin"
   packages = [
@@ -136,8 +144,10 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/gin-contrib/static",
     "github.com/gin-gonic/gin",
     "github.com/go-bongo/bongo",
+    "gopkg.in/mgo.v2/bson",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

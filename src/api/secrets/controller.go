@@ -1,7 +1,6 @@
 package secrets
 
 import (
-	"fmt"
 	"strings"
 	"errors"
 	"time"
@@ -35,7 +34,7 @@ func (controller *Controller) Store(context *gin.Context) {
 	}
 	
 	if request.ExpireAfterViews < 1 {
-		controller.error(context, http.StatusBadRequest, errors.New("ExpireAfterViews must be greater than 0"))
+		controller.error(context, http.StatusBadRequest, errors.New("Expire after views must be greater than 0"))
 		return
 	}
 
@@ -90,7 +89,7 @@ func (controller *Controller) Show(context *gin.Context) {
 	}
 	
 	if secret.RemainingViews < 1 {
-		controller.error(context, http.StatusBadRequest, errors.New("No remaining views"))
+		controller.error(context, http.StatusBadRequest, errors.New("No views remaining"))
 		return
 	}
 
