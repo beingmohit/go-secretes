@@ -10,9 +10,9 @@ import (
 func main() {
 	router := gin.Default()
 
-	databaseClient := database.CreateClient(os.Getenv("MONGODB_URI"), os.Getenv("MONGODB_DATABASE"))
+	databaseClient := database.NewClient(os.Getenv("MONGODB_URI"), os.Getenv("MONGODB_DATABASE"))
 	
-	apiHandler := api.CreateAPIHandler(router.Group("api"), databaseClient)
+	apiHandler := api.NewAPIHandler(router.Group("api"), databaseClient)
 	apiHandler.RegisterRoutes()
 	
 	router.Run()

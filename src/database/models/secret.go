@@ -10,5 +10,5 @@ type Secret struct {
 	SecretText string `json:"secretText"`
 	CreatedAt string `json:"createdAt"`
 	ExpiresAt string `json:"expiresAt"`
-	RemainingViews uint64 `json:"remainingViews"`
+	RemainingViews int32 `json:"remainingViews"`
 }

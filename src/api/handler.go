@@ -12,7 +12,7 @@ type APIHandler struct {
 	databaseClient *database.Client
 }
 
-func CreateAPIHandler(router *gin.RouterGroup, databaseClient *database.Client) APIHandler {
+func NewAPIHandler(router *gin.RouterGroup, databaseClient *database.Client) APIHandler {
 	apiHandler := APIHandler{router: router, databaseClient: databaseClient}
 	return apiHandler
 }
@@ -20,15 +20,9 @@ func CreateAPIHandler(router *gin.RouterGroup, databaseClient *database.Client) 
 func (apiHandler *APIHandler) RegisterRoutes() {
 	fmt.Println("Registering api routes")
 
-	secretsHandler := secrets.CreateAPIHandler(apiHandler.databaseClient)
+	secretsController := secrets.NewController(apiHandler.databaseClient)
 	
 	secretRoutes := apiHandler.router.Group("/secret")
-	secretRoutes.GET("/", secretsHandler.Index)
-	secretRoutes.POST("/", secretsHandler.Store)
-	secretRoutes.GET("/:hash", secretsHandler.Show)
-	secretRoutes.DELETE("/:hash", secretsHandler.Delete)
-}
-
-func Validate(context *gin.Context) {
-	
+	secretRoutes.POST("/", secretsController.Store)
+	secretRoutes.GET("/:hash", secretsController.Show)
 }
