@@ -1,0 +1,23 @@
+version: '3' 
+services:
+  app: 
+    container_name: secrets-app
+    build: .
+    restart: always
+    environment:
+      MONGODB_URI: "mongodb://root:root@db:27017"
+      MONGODB_DATABASE: secrets
+      PORT: 8080
+    ports:
+      - 8080:8080
+    depends_on: 
+     - db
+  db:
+    container_name: secrets-db
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: secrets
+    

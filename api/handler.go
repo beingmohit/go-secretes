@@ -3,8 +3,8 @@ package api
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/beingmohit/go-secretes/src/database"
-	"github.com/beingmohit/go-secretes/src/api/secrets"
+	"github.com/beingmohit/go-secretes/database"
+	"github.com/beingmohit/go-secretes/api/secrets"
 )
 
 type APIHandler struct {

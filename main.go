@@ -4,8 +4,8 @@ import (
 	"os"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/static"
-	"github.com/beingmohit/go-secretes/src/api"
-	"github.com/beingmohit/go-secretes/src/database"
+	"github.com/beingmohit/go-secretes/api"
+	"github.com/beingmohit/go-secretes/database"
 )
 
 func main() {

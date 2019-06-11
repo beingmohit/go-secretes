@@ -9,9 +9,9 @@ import (
 	"encoding/base32"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/mgo.v2/bson"
-	"github.com/beingmohit/go-secretes/src/api/secrets/requests"
-	"github.com/beingmohit/go-secretes/src/database"
-	"github.com/beingmohit/go-secretes/src/database/models"
+	"github.com/beingmohit/go-secretes/api/secrets/requests"
+	"github.com/beingmohit/go-secretes/database"
+	"github.com/beingmohit/go-secretes/database/models"
 )
 
 type Controller struct {
